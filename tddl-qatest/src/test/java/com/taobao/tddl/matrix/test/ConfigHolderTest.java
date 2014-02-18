@@ -17,9 +17,9 @@ public class ConfigHolderTest {
     public void initTestWithConfigHolder() throws TddlException {
 
         MatrixConfigHolder configHolder = new MatrixConfigHolder();
-        configHolder.setAppName("andor_show");
-        configHolder.setTopologyFilePath("test_matrix.xml");
-        configHolder.setSchemaFilePath("test_schema.xml");
+        configHolder.setAppName("DEV_SUBWAY_MYSQL");
+        // configHolder.setTopologyFilePath("test_matrix.xml");
+        // configHolder.setSchemaFilePath("test_schema.xml");
 
         try {
             configHolder.init();
@@ -33,8 +33,7 @@ public class ConfigHolderTest {
         context.setExecutorService(Executors.newCachedThreadPool());
         // ResultCursor rc = me.execute("select * from bmw_users limit 10",
         // context);
-        ResultCursor rc = me.execute("select count(distinct gmt_create) as k  from mobile_pigeon_msg_log  order by gmt_create limit 10",
-            context);
+        ResultCursor rc = me.execute("select * from lunaadgroup limit 10", context);
 
         IRowSet row = null;
         while ((row = rc.next()) != null) {

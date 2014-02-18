@@ -9,6 +9,8 @@ import java.util.concurrent.atomic.AtomicLong;
 import com.taobao.tddl.common.exception.TddlException;
 import com.taobao.tddl.common.utils.GeneralUtil;
 import com.taobao.tddl.common.utils.TStringUtil;
+import com.taobao.tddl.common.utils.logger.Logger;
+import com.taobao.tddl.common.utils.logger.LoggerFactory;
 import com.taobao.tddl.executor.codec.CodecFactory;
 import com.taobao.tddl.executor.common.ExecutionContext;
 import com.taobao.tddl.executor.common.KVPair;
@@ -31,9 +33,6 @@ import com.taobao.tddl.optimizer.config.table.TableMeta;
 import com.taobao.tddl.optimizer.core.datatype.DataType;
 import com.taobao.tddl.optimizer.core.expression.IOrderBy;
 import com.taobao.tddl.optimizer.core.expression.ISelectable;
-
-import com.taobao.tddl.common.utils.logger.Logger;
-import com.taobao.tddl.common.utils.logger.LoggerFactory;
 
 /**
  * 用于临时表排序，需要依赖bdb
@@ -157,9 +156,13 @@ public class TempTableSortCursor extends SortCursor implements ITempTableSortCur
                 }
                 for (ColumnMeta column : columns) {
                     String colName = column.getName();
-                    if (colName.contains(".")) {
-                        String[] sp = TStringUtil.split(colName, ".");
-                        colName = sp[sp.length - 1];
+                    if (colName.contains("_ANDOR_TABLENAME_")) {
+
+                        int m = colName.indexOf("_ANDOR_TABLENAME_");
+                        colName = colName.substring(m + "_ANDOR_TABLENAME_".length(), colName.length());
+                        // String[] sp = TStringUtil.split(colName,
+                        // "_ANDOR_TABLENAME_");
+                        // colName = sp[sp.length - 1];
                     }
                     /**
                      * 在临时表的时候，来自不同2个表的相同的列，比如 a.id和b.id
@@ -175,11 +178,11 @@ public class TempTableSortCursor extends SortCursor implements ITempTableSortCur
                         if ("__IDENTITY__".equals(colName)) {
                             continue;
                         }
-                        if (colName.contains(".")) {
+                        if (colName.contains("_ANDOR_TABLENAME_")) {
                             // String[] sp = StringUtil.split(colName, ".");
                             // colName = sp[sp.length-1];
-                            int m = colName.indexOf(".");
-                            colName = colName.substring(m + 1, colName.length());
+                            int m = colName.indexOf("_ANDOR_TABLENAME_");
+                            colName = colName.substring(m + "_ANDOR_TABLENAME_".length(), colName.length());
                         }
                         /**
                          * 在临时表的时候，来自不同2个表的相同的列，比如 a.id和b.id
@@ -249,7 +252,7 @@ public class TempTableSortCursor extends SortCursor implements ITempTableSortCur
             } else {
                 // 列名与order by not match ,放到value里
                 ColumnMeta cm2 = new ColumnMeta(cm.getTableName(),
-                    cm.getTableName() + "." + cm.getName(),
+                    cm.getTableName() + "_ANDOR_TABLENAME_" + cm.getName(),
                     cm.getDataType(),
                     cm.getAlias(),
                     cm.isNullable());
@@ -273,7 +276,7 @@ public class TempTableSortCursor extends SortCursor implements ITempTableSortCur
                     } else {
                         ISelectable cm = ob.getColumn();
                         ColumnMeta cm2 = new ColumnMeta(cm.getTableName(),
-                            cm.getTableName() + "." + cm.getColumnName(),
+                            cm.getTableName() + "_ANDOR_TABLENAME_" + cm.getColumnName(),
                             cm.getDataType(),
                             cm.getAlias(),
                             true);
@@ -297,7 +300,7 @@ public class TempTableSortCursor extends SortCursor implements ITempTableSortCur
             if (cm != null && TStringUtil.equals(ExecUtils.getLogicTableName(cm.getTableName()), orderByTable)) {
                 if (TStringUtil.equals(cm.getName(), iSelectable.getColumnName())) {
                     ColumnMeta cm2 = new ColumnMeta(cm.getTableName(),
-                        cm.getTableName() + "." + cm.getName(),
+                        cm.getTableName() + "_ANDOR_TABLENAME_" + cm.getName(),
                         cm.getDataType(),
                         cm.getAlias(),
                         cm.isNullable());
