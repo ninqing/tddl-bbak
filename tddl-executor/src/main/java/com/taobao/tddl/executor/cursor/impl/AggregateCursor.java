@@ -9,6 +9,8 @@ import java.util.Map.Entry;
 
 import com.taobao.tddl.common.exception.TddlException;
 import com.taobao.tddl.common.utils.GeneralUtil;
+import com.taobao.tddl.common.utils.logger.Logger;
+import com.taobao.tddl.common.utils.logger.LoggerFactory;
 import com.taobao.tddl.executor.cursor.IAggregateCursor;
 import com.taobao.tddl.executor.cursor.ICursorMeta;
 import com.taobao.tddl.executor.cursor.ISchematicCursor;
@@ -23,9 +25,6 @@ import com.taobao.tddl.optimizer.core.expression.IFunction;
 import com.taobao.tddl.optimizer.core.expression.IFunction.FunctionType;
 import com.taobao.tddl.optimizer.core.expression.IOrderBy;
 import com.taobao.tddl.optimizer.core.expression.ISelectable;
-
-import com.taobao.tddl.common.utils.logger.Logger;
-import com.taobao.tddl.common.utils.logger.LoggerFactory;
 
 /**
  * 用来计算聚合函数，group by
@@ -238,10 +237,7 @@ public class AggregateCursor extends SchematicCursor implements IAggregateCursor
             }
         }
         cursorMeta = CursorMetaImp.buildNew(retColumns, retColumns.size());
-        if (logger.isDebugEnabled()) {
-            logger.warn("firstRowSetInCurrentGroup:\n" + firstRowSetInCurrentGroup);
-            logger.warn("cursorMeta:\n" + cursorMeta);
-        }
+
     }
 
     private boolean isCurrentGroupByChanged(IRowSet kv) {
