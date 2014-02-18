@@ -247,7 +247,10 @@ public class TempTableSortCursor extends SortCursor implements ITempTableSortCur
         Set<IOrderBy> hashOrderBys = new HashSet<IOrderBy>();
         for (ColumnMeta cm : columnMeta) {
             if (findOrderByInKey(orderBys, columns, cm, hashOrderBys)) {
-                if (!metaColumns.contains(cm)) metaColumns.add(cm);
+                if (!metaColumns.contains(cm)) {
+                    metaColumns.add(cm);
+
+                }
                 continue;
             } else {
                 // 列名与order by not match ,放到value里
