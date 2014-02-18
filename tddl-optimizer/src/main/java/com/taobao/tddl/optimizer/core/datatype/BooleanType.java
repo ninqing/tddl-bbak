@@ -5,97 +5,102 @@ import com.taobao.tddl.common.exception.TddlRuntimeException;
 
 public class BooleanType extends CommonType<Boolean> {
 
-    private final Calculator calculator = new Calculator() {
+    private final Calculator calculator = new AbstractCalculator() {
 
                                             @Override
-                                            public Object add(Object v1, Object v2) {
+                                            public Object doAdd(Object v1, Object v2) {
                                                 Boolean i1 = convertFrom(v1);
                                                 Boolean i2 = convertFrom(v2);
                                                 return (i1 ? 1 : 0) + (i2 ? 1 : 0);
                                             }
 
                                             @Override
-                                            public Object sub(Object v1, Object v2) {
+                                            public Object doSub(Object v1, Object v2) {
                                                 Boolean i1 = convertFrom(v1);
                                                 Boolean i2 = convertFrom(v2);
                                                 return (i1 ? 1 : 0) - (i2 ? 1 : 0);
                                             }
 
                                             @Override
-                                            public Object multiply(Object v1, Object v2) {
+                                            public Object doMultiply(Object v1, Object v2) {
                                                 Boolean i1 = convertFrom(v1);
                                                 Boolean i2 = convertFrom(v2);
                                                 return (i1 ? 1 : 0) * (i2 ? 1 : 0);
                                             }
 
                                             @Override
-                                            public Object divide(Object v1, Object v2) {
+                                            public Object doDivide(Object v1, Object v2) {
                                                 Boolean i1 = convertFrom(v1);
                                                 Boolean i2 = convertFrom(v2);
 
-                                                if (!i2) {
-                                                    throw new TddlRuntimeException("false不能作为除数");
+                                                if (i2 == false) {
+                                                    return null;
                                                 }
+
                                                 return (i1 ? 1 : 0) / (i2 ? 1 : 0);
                                             }
 
                                             @Override
-                                            public Object mod(Object v1, Object v2) {
+                                            public Object doMod(Object v1, Object v2) {
                                                 Boolean i1 = convertFrom(v1);
                                                 Boolean i2 = convertFrom(v2);
+
+                                                if (i2 == false) {
+                                                    return null;
+                                                }
                                                 return (i1 ? 1 : 0) % (i2 ? 1 : 0);
                                             }
 
                                             @Override
-                                            public Object and(Object v1, Object v2) {
+                                            public Object doAnd(Object v1, Object v2) {
                                                 Boolean i1 = convertFrom(v1);
                                                 Boolean i2 = convertFrom(v2);
                                                 return (i1) && (i2);
                                             }
 
                                             @Override
-                                            public Object or(Object v1, Object v2) {
+                                            public Object doOr(Object v1, Object v2) {
                                                 Boolean i1 = convertFrom(v1);
                                                 Boolean i2 = convertFrom(v2);
                                                 return (i1) || (i2);
                                             }
 
                                             @Override
-                                            public Object not(Object v1) {
+                                            public Object doNot(Object v1) {
                                                 Boolean i1 = convertFrom(v1);
 
                                                 return !i1;
                                             }
 
                                             @Override
-                                            public Object bitAnd(Object v1, Object v2) {
+                                            public Object doBitAnd(Object v1, Object v2) {
                                                 Boolean i1 = convertFrom(v1);
                                                 Boolean i2 = convertFrom(v2);
                                                 return i1 & i2;
                                             }
 
                                             @Override
-                                            public Object bitOr(Object v1, Object v2) {
+                                            public Object doBitOr(Object v1, Object v2) {
                                                 Boolean i1 = convertFrom(v1);
                                                 Boolean i2 = convertFrom(v2);
                                                 return i1 | i2;
                                             }
 
                                             @Override
-                                            public Object bitNot(Object v1) {
+                                            public Object doBitNot(Object v1) {
                                                 Boolean i1 = convertFrom(v1);
                                                 return !i1;
                                             }
 
                                             @Override
-                                            public Object xor(Object v1, Object v2) {
+                                            public Object doXor(Object v1, Object v2) {
                                                 Boolean i1 = convertFrom(v1);
                                                 Boolean i2 = convertFrom(v2);
                                                 return i1 ^ i2;
                                             }
 
                                             @Override
-                                            public Object bitXor(Object v1, Object v2) {
+                                            public Object doBitXor(Object v1, Object v2) {
                                                 Boolean i1 = convertFrom(v1);
                                                 Boolean i2 = convertFrom(v2);
                                                 return i1 ^ i2;

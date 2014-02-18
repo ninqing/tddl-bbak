@@ -34,7 +34,7 @@ public class Minus extends ScalarFunction {
     private Object computeInner(Object[] args) {
         DataType type = getReturnType();
         // -min(id) = min(id) * -1
-        return type.getCalculator().multiply(args[0], -1);
+        return type.getCalculator().doMultiply(args[0], -1);
     }
 
 }

@@ -9,14 +9,14 @@ import com.taobao.tddl.common.model.BaseRowSet;
 
 public class StringType extends AbstractDataType<String> {
 
-    private final Calculator calculator = new Calculator() {
+    private final Calculator calculator = new AbstractCalculator() {
 
                                             public BigDecimal convertToBigDecimal(Object v) {
                                                 return DataType.BigDecimalType.convertFrom(v);
                                             }
 
                                             @Override
-                                            public Object xor(Object v1, Object v2) {
+                                            public Object doXor(Object v1, Object v2) {
                                                 BigDecimal d1 = convertToBigDecimal(v1);
                                                 BigDecimal d2 = convertToBigDecimal(v2);
 
@@ -24,7 +24,7 @@ public class StringType extends AbstractDataType<String> {
                                             }
 
                                             @Override
-                                            public Object sub(Object v1, Object v2) {
+                                            public Object doSub(Object v1, Object v2) {
                                                 BigDecimal d1 = convertToBigDecimal(v1);
                                                 BigDecimal d2 = convertToBigDecimal(v2);
 
@@ -32,7 +32,7 @@ public class StringType extends AbstractDataType<String> {
                                             }
 
                                             @Override
-                                            public Object or(Object v1, Object v2) {
+                                            public Object doOr(Object v1, Object v2) {
                                                 BigDecimal d1 = convertToBigDecimal(v1);
                                                 BigDecimal d2 = convertToBigDecimal(v2);
 
@@ -40,14 +40,14 @@ public class StringType extends AbstractDataType<String> {
                                             }
 
                                             @Override
-                                            public Object not(Object v1) {
+                                            public Object doNot(Object v1) {
                                                 BigDecimal d1 = convertToBigDecimal(v1);
 
                                                 return DataType.BigDecimalType.getCalculator().not(d1);
                                             }
 
                                             @Override
-                                            public Object multiply(Object v1, Object v2) {
+                                            public Object doMultiply(Object v1, Object v2) {
                                                 BigDecimal d1 = convertToBigDecimal(v1);
                                                 BigDecimal d2 = convertToBigDecimal(v2);
 
@@ -55,7 +55,7 @@ public class StringType extends AbstractDataType<String> {
                                             }
 
                                             @Override
-                                            public Object mod(Object v1, Object v2) {
+                                            public Object doMod(Object v1, Object v2) {
                                                 BigDecimal d1 = convertToBigDecimal(v1);
                                                 BigDecimal d2 = convertToBigDecimal(v2);
 
@@ -63,7 +63,7 @@ public class StringType extends AbstractDataType<String> {
                                             }
 
                                             @Override
-                                            public Object divide(Object v1, Object v2) {
+                                            public Object doDivide(Object v1, Object v2) {
                                                 BigDecimal d1 = convertToBigDecimal(v1);
                                                 BigDecimal d2 = convertToBigDecimal(v2);
 
@@ -71,7 +71,7 @@ public class StringType extends AbstractDataType<String> {
                                             }
 
                                             @Override
-                                            public Object bitXor(Object v1, Object v2) {
+                                            public Object doBitXor(Object v1, Object v2) {
                                                 BigDecimal d1 = convertToBigDecimal(v1);
                                                 BigDecimal d2 = convertToBigDecimal(v2);
 
@@ -79,7 +79,7 @@ public class StringType extends AbstractDataType<String> {
                                             }
 
                                             @Override
-                                            public Object bitOr(Object v1, Object v2) {
+                                            public Object doBitOr(Object v1, Object v2) {
                                                 BigDecimal d1 = convertToBigDecimal(v1);
                                                 BigDecimal d2 = convertToBigDecimal(v2);
 
@@ -87,14 +87,14 @@ public class StringType extends AbstractDataType<String> {
                                             }
 
                                             @Override
-                                            public Object bitNot(Object v1) {
+                                            public Object doBitNot(Object v1) {
                                                 BigDecimal d1 = convertToBigDecimal(v1);
 
                                                 return DataType.BigDecimalType.getCalculator().bitNot(d1);
                                             }
 
                                             @Override
-                                            public Object bitAnd(Object v1, Object v2) {
+                                            public Object doBitAnd(Object v1, Object v2) {
                                                 BigDecimal d1 = convertToBigDecimal(v1);
                                                 BigDecimal d2 = convertToBigDecimal(v2);
 
@@ -102,7 +102,7 @@ public class StringType extends AbstractDataType<String> {
                                             }
 
                                             @Override
-                                            public Object and(Object v1, Object v2) {
+                                            public Object doAnd(Object v1, Object v2) {
                                                 BigDecimal d1 = convertToBigDecimal(v1);
                                                 BigDecimal d2 = convertToBigDecimal(v2);
 
@@ -110,7 +110,7 @@ public class StringType extends AbstractDataType<String> {
                                             }
 
                                             @Override
-                                            public Object add(Object v1, Object v2) {
+                                            public Object doAdd(Object v1, Object v2) {
                                                 BigDecimal d1 = convertToBigDecimal(v1);
                                                 BigDecimal d2 = convertToBigDecimal(v2);
 

@@ -15,45 +15,55 @@ public class BigIntegerType extends CommonType<BigInteger> {
     private static final BigInteger maxValue   = BigInteger.valueOf(Long.MAX_VALUE);
     private static final BigInteger minValue   = BigInteger.valueOf(Long.MIN_VALUE);
     private static final BigInteger zeroValue  = BigInteger.valueOf(0);
-    private final Calculator        calculator = new Calculator() {
+    private final Calculator        calculator = new AbstractCalculator() {
 
                                                    @Override
-                                                   public Object add(Object v1, Object v2) {
+                                                   public Object doAdd(Object v1, Object v2) {
                                                        BigInteger i1 = convertFrom(v1);
                                                        BigInteger i2 = convertFrom(v2);
                                                        return i1.add(i2);
                                                    }
 
                                                    @Override
-                                                   public Object sub(Object v1, Object v2) {
+                                                   public Object doSub(Object v1, Object v2) {
                                                        BigInteger i1 = convertFrom(v1);
                                                        BigInteger i2 = convertFrom(v2);
                                                        return i1.subtract(i2);
                                                    }
 
                                                    @Override
-                                                   public Object multiply(Object v1, Object v2) {
+                                                   public Object doMultiply(Object v1, Object v2) {
                                                        BigInteger i1 = convertFrom(v1);
                                                        BigInteger i2 = convertFrom(v2);
                                                        return i1.multiply(i2);
                                                    }
 
                                                    @Override
-                                                   public Object divide(Object v1, Object v2) {
+                                                   public Object doDivide(Object v1, Object v2) {
                                                        BigInteger i1 = convertFrom(v1);
                                                        BigInteger i2 = convertFrom(v2);
+
+                                                       if (i2.equals(BigInteger.ZERO)) {
+                                                           return null;
+                                                       }
+
                                                        return i1.divide(i2);
                                                    }
 
                                                    @Override
-                                                   public Object mod(Object v1, Object v2) {
+                                                   public Object doMod(Object v1, Object v2) {
                                                        BigInteger i1 = convertFrom(v1);
                                                        BigInteger i2 = convertFrom(v2);
+
+                                                       if (i2.equals(BigInteger.ZERO)) {
+                                                           return null;
+                                                       }
+
                                                        return i1.remainder(i2);
                                                    }
 
                                                    @Override
-                                                   public Object and(Object v1, Object v2) {
+                                                   public Object doAnd(Object v1, Object v2) {
                                                        BigInteger i1 = convertFrom(v1);
                                                        BigInteger i2 = convertFrom(v2);
                                                        return (i1.compareTo(zeroValue) != 0)
@@ -61,7 +71,7 @@ public class BigIntegerType extends CommonType<BigInteger> {
                                                    }
 
                                                    @Override
-                                                   public Object or(Object v1, Object v2) {
+                                                   public Object doOr(Object v1, Object v2) {
                                                        BigInteger i1 = convertFrom(v1);
                                                        BigInteger i2 = convertFrom(v2);
                                                        return (i1.compareTo(zeroValue) != 0)
@@ -69,34 +79,34 @@ public class BigIntegerType extends CommonType<BigInteger> {
                                                    }
 
                                                    @Override
-                                                   public Object not(Object v1) {
+                                                   public Object doNot(Object v1) {
                                                        BigInteger i1 = convertFrom(v1);
 
                                                        return (i1.compareTo(zeroValue) == 0);
                                                    }
 
                                                    @Override
-                                                   public Object bitAnd(Object v1, Object v2) {
+                                                   public Object doBitAnd(Object v1, Object v2) {
                                                        BigInteger i1 = convertFrom(v1);
                                                        BigInteger i2 = convertFrom(v2);
                                                        return i1.and(i2);
                                                    }
 
                                                    @Override
-                                                   public Object bitOr(Object v1, Object v2) {
+                                                   public Object doBitOr(Object v1, Object v2) {
                                                        BigInteger i1 = convertFrom(v1);
                                                        BigInteger i2 = convertFrom(v2);
                                                        return i1.or(i2);
                                                    }
 
                                                    @Override
-                                                   public Object bitNot(Object v1) {
+                                                   public Object doBitNot(Object v1) {
                                                        BigInteger i1 = convertFrom(v1);
                                                        return i1.not();
                                                    }
 
                                                    @Override
-                                                   public Object xor(Object v1, Object v2) {
+                                                   public Object doXor(Object v1, Object v2) {
                                                        BigInteger i1 = convertFrom(v1);
                                                        BigInteger i2 = convertFrom(v2);
                                                        return (i1.compareTo(zeroValue) != 0)
@@ -104,7 +114,7 @@ public class BigIntegerType extends CommonType<BigInteger> {
                                                    }
 
                                                    @Override
-                                                   public Object bitXor(Object v1, Object v2) {
+                                                   public Object doBitXor(Object v1, Object v2) {
                                                        BigInteger i1 = convertFrom(v1);
                                                        BigInteger i2 = convertFrom(v2);
                                                        return i1.xor(i2);

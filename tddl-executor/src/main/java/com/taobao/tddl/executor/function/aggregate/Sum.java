@@ -32,7 +32,7 @@ public class Sum extends AggregateFunction {
             o = type.convertFrom(o);
             result = o;
         } else {
-            result = type.getCalculator().add(result, o);
+            result = type.getCalculator().doAdd(result, o);
         }
 
     }

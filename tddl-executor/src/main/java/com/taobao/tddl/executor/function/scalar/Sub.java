@@ -31,6 +31,6 @@ public class Sub extends ScalarFunction {
 
     private Object computeInner(Object[] args) {
         DataType type = this.getReturnType();
-        return type.getCalculator().sub(args[0], args[1]);
+        return type.getCalculator().doSub(args[0], args[1]);
     }
 }

@@ -27,7 +27,7 @@ public class Avg extends AggregateFunction {
             if (total == null) {
                 total = type.convertFrom(o);
             } else {
-                total = type.getCalculator().add(total, o);
+                total = type.getCalculator().doAdd(total, o);
             }
         }
     }
@@ -44,7 +44,7 @@ public class Avg extends AggregateFunction {
         if (total == null) {
             total = type.convertFrom(o);
         } else {
-            total = type.getCalculator().add(total, o);
+            total = type.getCalculator().doAdd(total, o);
         }
     }
 
@@ -69,9 +69,9 @@ public class Avg extends AggregateFunction {
     public Object getResult() {
         DataType type = this.getReturnType();
         if (total == null) {
-            return type.getCalculator().divide(0L, count);
+            return type.getCalculator().doDivide(0L, count);
         } else {
-            return type.getCalculator().divide(total, count);
+            return type.getCalculator().doDivide(total, count);
         }
     }
 

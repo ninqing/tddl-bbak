@@ -17,7 +17,7 @@ public class Division extends ScalarFunction {
 
     private Object computeInner(Object[] args) {
         DataType type = this.getReturnType();
-        return type.getCalculator().divide(args[0], args[1]);
+        return type.getCalculator().doDivide(args[0], args[1]);
     }
 
     @Override

@@ -31,6 +31,6 @@ public class Multiply extends ScalarFunction {
 
     private Object computeInner(Object[] args) {
         DataType type = this.getReturnType();
-        return type.getCalculator().multiply(args[0], args[1]);
+        return type.getCalculator().doMultiply(args[0], args[1]);
     }
 }

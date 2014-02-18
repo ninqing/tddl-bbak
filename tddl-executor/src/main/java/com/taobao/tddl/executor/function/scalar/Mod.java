@@ -12,7 +12,7 @@ public class Mod extends ScalarFunction {
 
     private Object computeInner(Object[] args) {
         DataType type = this.getReturnType();
-        return type.getCalculator().mod(args[0], args[1]);
+        return type.getCalculator().doMod(args[0], args[1]);
 
     }
 
