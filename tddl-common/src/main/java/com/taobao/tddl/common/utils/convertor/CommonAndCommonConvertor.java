@@ -144,9 +144,15 @@ public class CommonAndCommonConvertor {
                 return value.toBigInteger();
             }
 
-            // 其他类型的处理，先转化为String，再转到对应的目标对象
-            StringAndCommonConvertor.StringToCommon strConvertor = new StringAndCommonConvertor.StringToCommon();
-            return strConvertor.convert(value.toPlainString(), targetClass);
+            if (targetClass == Double.class || targetClass == double.class || targetClass == Float.class
+                || targetClass == float.class) {
+                // 其他类型的处理，先转化为String，再转到对应的目标对象
+                StringAndCommonConvertor.StringToCommon strConvertor = new StringAndCommonConvertor.StringToCommon();
+                return strConvertor.convert(value.toPlainString(), targetClass);
+            } else {
+                // 其他数字类型，不带小数，则转化为BigInteger
+                return toCommon(srcClass, targetClass, value.longValue());
+            }
         }
 
         // BigInteger数据处理
@@ -160,8 +166,15 @@ public class CommonAndCommonConvertor {
             }
 
             // 其他类型的处理，先转化为String，再转到对应的目标对象
-            StringAndCommonConvertor.StringToCommon strConvertor = new StringAndCommonConvertor.StringToCommon();
-            return strConvertor.convert(value.toString(), targetClass);
+            if (targetClass == Double.class || targetClass == double.class || targetClass == Float.class
+                || targetClass == float.class) {
+                // 其他类型的处理，先转化为String，再转到对应的目标对象
+                StringAndCommonConvertor.StringToCommon strConvertor = new StringAndCommonConvertor.StringToCommon();
+                return strConvertor.convert(value.toString(), targetClass);
+            } else {
+                // 其他数字类型，不带小数，则转化为longValue
+                return toCommon(srcClass, targetClass, value.longValue());
+            }
         }
 
         @Override
