@@ -2,6 +2,7 @@ package com.taobao.tddl.optimizer;
 
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
+import org.junit.Ignore;
 
 import com.taobao.tddl.common.exception.TddlException;
 import com.taobao.tddl.common.model.Matrix;
@@ -19,6 +20,7 @@ import com.taobao.tddl.repo.mysql.sqlconvertor.SqlConvertor;
 import com.taobao.tddl.repo.mysql.sqlconvertor.SqlMergeNode;
 import com.taobao.tddl.rule.TddlRule;
 
+@Ignore("测试基类")
 public class BaseSqlOptimizerTest {
 
     protected static final String       APPNAME     = "tddl";
