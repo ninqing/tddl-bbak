@@ -171,7 +171,11 @@ public abstract class AbstractRowSet implements IRowSet {
 
         for (ColumnMeta cm : this.getParentCursorMeta().getColumns()) {
             int index = this.getParentCursorMeta().getIndex(cm.getTableName(), cm.getName());
-            sb.append(cm.getName() + ":" + this.getValues().get(index) + " ");
+
+            if (index > this.getValues().size()) {
+                System.out.println("11");
+            }
+            sb.append(cm.getName() + ":" + this.getString(index) + " ");
         }
         return sb.toString();
     }

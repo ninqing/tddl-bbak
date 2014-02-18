@@ -20,7 +20,7 @@ public class BitXor extends ScalarFunction {
 
     private Object computeInner(Object[] args) {
         DataType type = this.getReturnType();
-        return type.getCalculator().doBitXor(args[0], args[1]);
+        return type.getCalculator().bitXor(args[0], args[1]);
     }
 
     @Override

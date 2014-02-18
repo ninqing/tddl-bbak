@@ -21,6 +21,7 @@ import com.taobao.tddl.executor.function.ExtraFunction;
 import com.taobao.tddl.executor.record.CloneableRecord;
 import com.taobao.tddl.executor.rowset.IRowSet;
 import com.taobao.tddl.executor.utils.ExecUtils;
+import com.taobao.tddl.optimizer.core.datatype.DataTypeUtil;
 import com.taobao.tddl.optimizer.core.expression.IBooleanFilter;
 import com.taobao.tddl.optimizer.core.expression.IColumn;
 import com.taobao.tddl.optimizer.core.expression.IFilter;
@@ -113,7 +114,8 @@ public class ValueFilterCursor extends SchematicCursor implements IValueFilterCu
             if (col instanceof ISelectable) {
                 try {
 
-                    if (col instanceof IFunction && ((IFunction) col).getFunctionType().equals(FunctionType.Scalar)) {
+                    if (((ISelectable) col).getAlias() == null && col instanceof IFunction
+                        && ((IFunction) col).getFunctionType().equals(FunctionType.Scalar)) {
                         column_value = processFunction(iRowSet, col);
 
                     } else {
@@ -194,7 +196,8 @@ public class ValueFilterCursor extends SchematicCursor implements IValueFilterCu
                 return processIn(column_value, bf.getValues());
             }
 
-            int n = ((Comparable) v).compareTo(column_value);
+            int n = DataTypeUtil.getTypeOfObject(v).compare(v, column_value);
+            // int n = ((Comparable) v).compareTo(column_value);
 
             if (n == 0) {
                 if (op == OPERATION.EQ || op == OPERATION.GT_EQ || op == OPERATION.LT_EQ) {

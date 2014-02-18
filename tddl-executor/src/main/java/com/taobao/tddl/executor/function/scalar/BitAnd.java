@@ -20,7 +20,7 @@ public class BitAnd extends ScalarFunction {
 
     private Object computeInner(Object[] args) {
         DataType type = this.getReturnType();
-        return type.getCalculator().doBitAnd(args[0], args[1]);
+        return type.getCalculator().bitAnd(args[0], args[1]);
     }
 
     @Override
