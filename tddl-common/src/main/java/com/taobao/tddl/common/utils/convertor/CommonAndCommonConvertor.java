@@ -110,16 +110,15 @@ public class CommonAndCommonConvertor {
 
             // Float
             if (targetClass == Float.class || targetClass == float.class) {
-                double doubleValue = value.doubleValue();
-                if (doubleValue > Float.MAX_VALUE) {
-                    throw new ConvertorException(srcClass.getName() + " value '" + value + "' is too large for "
-                                                 + targetClass.getName());
-                }
-
-                if (doubleValue < Float.MIN_VALUE) {
-                    throw new ConvertorException(srcClass.getName() + " value '" + value + "' is too small for "
-                                                 + targetClass.getName());
-                }
+                /*
+                 * double doubleValue = value.doubleValue(); if (doubleValue >
+                 * Float.MAX_VALUE) { throw new
+                 * ConvertorException(srcClass.getName() + " value '" + value +
+                 * "' is too large for " + targetClass.getName()); } if
+                 * (doubleValue < Float.MIN_VALUE) { throw new
+                 * ConvertorException(srcClass.getName() + " value '" + value +
+                 * "' is too small for " + targetClass.getName()); }
+                 */
                 return Float.valueOf(value.floatValue());
             }
 
@@ -147,11 +146,14 @@ public class CommonAndCommonConvertor {
             if (targetClass == Double.class || targetClass == double.class || targetClass == Float.class
                 || targetClass == float.class) {
                 // 其他类型的处理，先转化为String，再转到对应的目标对象
-                StringAndCommonConvertor.StringToCommon strConvertor = new StringAndCommonConvertor.StringToCommon();
-                return strConvertor.convert(value.toPlainString(), targetClass);
+                // StringAndCommonConvertor.StringToCommon strConvertor = new
+                // StringAndCommonConvertor.StringToCommon();
+                // return strConvertor.convert(value.doubleValue(),
+                // targetClass);
+                return toCommon(srcClass, targetClass, value.doubleValue());
             } else {
                 // 其他数字类型，不带小数，则转化为BigInteger
-                return toCommon(srcClass, targetClass, value.longValue());
+                return toCommon(srcClass, targetClass, value.longValueExact());
             }
         }
 
@@ -165,16 +167,8 @@ public class CommonAndCommonConvertor {
                 return new BigDecimal((BigInteger) value);
             }
 
-            // 其他类型的处理，先转化为String，再转到对应的目标对象
-            if (targetClass == Double.class || targetClass == double.class || targetClass == Float.class
-                || targetClass == float.class) {
-                // 其他类型的处理，先转化为String，再转到对应的目标对象
-                StringAndCommonConvertor.StringToCommon strConvertor = new StringAndCommonConvertor.StringToCommon();
-                return strConvertor.convert(value.toString(), targetClass);
-            } else {
-                // 其他数字类型，不带小数，则转化为longValue
-                return toCommon(srcClass, targetClass, value.longValue());
-            }
+            // 其他数字类型，不带小数，则转化为longValue
+            return toCommon(srcClass, targetClass, value.longValue());
         }
 
         @Override

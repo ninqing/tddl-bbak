@@ -13,7 +13,6 @@ import com.taobao.tddl.common.utils.extension.Activate;
 @Activate(order = 1)
 public class StaticPasswordCoder implements TPasswordCoder {
 
-    @Override
     public String encode(String encKey, String secret) throws NoSuchAlgorithmException, NoSuchPaddingException,
                                                       InvalidKeyException, IllegalBlockSizeException,
                                                       BadPaddingException {
@@ -23,18 +22,18 @@ public class StaticPasswordCoder implements TPasswordCoder {
             return "-6e3251280f47bc7d";
         } else if (secret.equals("andor")) {
             return "364e198e1cfa74ef";
+        } else if (secret.equals("-5e5af79b7feee99c207a6df87216de44")) {
+            return "tddlperf";
         } else {
             return "tddl";
         }
     }
 
-    @Override
     public String encode(String secret) throws NoSuchPaddingException, NoSuchAlgorithmException, InvalidKeyException,
                                        BadPaddingException, IllegalBlockSizeException {
         return encode(secret, null);
     }
 
-    @Override
     public String decode(String encKey, String secret) throws NoSuchPaddingException, NoSuchAlgorithmException,
                                                       InvalidKeyException, BadPaddingException,
                                                       IllegalBlockSizeException {
@@ -44,12 +43,13 @@ public class StaticPasswordCoder implements TPasswordCoder {
             return "diamond";
         } else if (secret.equals("364e198e1cfa74ef") || secret.equals("andor")) {
             return "andor";
+        } else if (secret.equals("-5e5af79b7feee99c207a6df87216de44") || secret.equals("tddlperf")) {
+            return "tddlperf";
         } else {
             return "tddl";
         }
     }
 
-    @Override
     public char[] decode(String secret) throws NoSuchPaddingException, NoSuchAlgorithmException, InvalidKeyException,
                                        BadPaddingException, IllegalBlockSizeException {
         return decode(secret, null).toCharArray();

@@ -6,9 +6,9 @@ import com.taobao.tddl.rule.model.sqljep.Comparative;
 
 public abstract class NumberPartDiscontinousRangeEnumerator extends PartDiscontinousRangeEnumerator {
 
-    private static final int     LIMIT_UNIT_OF_LONG        = 1;
-    private static final int     DEFAULT_LONG_ATOMIC_VALUE = 1;
-    private static final boolean isAllowNegative;
+    protected static final int     LIMIT_UNIT_OF_LONG        = 1;
+    protected static final int     DEFAULT_LONG_ATOMIC_VALUE = 1;
+    protected static final boolean isAllowNegative;
     static {
         /**
          * 大多数整形的ID/分库分表字段默认都是大于零的。如果有小于0的系统，那么将这个参数设为true，

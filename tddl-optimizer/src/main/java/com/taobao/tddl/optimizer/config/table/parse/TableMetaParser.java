@@ -253,8 +253,8 @@ public class TableMetaParser {
         return Relationship.NONE;
     }
 
-    public static DataType jdbcTypeToDataType(int jdbcType) {
-        return getDataType(jdbcTypeToDataTypeString(jdbcType));
+    public static DataType jdbcTypeToDataType(int jdbcType, boolean isUnsigned) {
+        return getDataType(jdbcTypeToDataTypeString(jdbcType, isUnsigned));
     }
 
     private static DataType getDataType(String type) {
@@ -295,25 +295,30 @@ public class TableMetaParser {
         }
     }
 
-    public static String jdbcTypeToDataTypeString(int jdbcType) {
+    public static String jdbcTypeToDataTypeString(int jdbcType, boolean isUnsigned) {
         String type = null;
         switch (jdbcType) {
             case Types.BIGINT:
-                // 考虑unsigned
-                type = "BIGINTEGER";
+                if (isUnsigned) {
+                    type = "BIGINTEGER";
+                } else {
+                    type = "LONG";
+                }
                 break;
             case Types.NUMERIC:
             case Types.DECIMAL:
                 type = "BIGDECIMAL";
                 break;
             case Types.INTEGER:
-                // 考虑unsigned
-                type = "LONG";
+                if (isUnsigned) {
+                    type = "LONG";
+                } else {
+                    type = "INTEGER";
+                }
                 break;
             case Types.TINYINT:
             case Types.SMALLINT:
-                // 考虑unsigned
-                type = "INT";
+                type = "INTEGER";
                 break;
             case Types.DATE:
                 type = "DATE";

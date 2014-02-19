@@ -14,19 +14,21 @@ import javax.sql.DataSource;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 
+import org.apache.commons.lang.StringUtils;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 
 import com.taobao.tddl.common.exception.TddlRuntimeException;
 import com.taobao.tddl.common.utils.XmlHelper;
 import com.taobao.tddl.common.utils.extension.Activate;
-import com.taobao.tddl.common.utils.logger.Logger;
-import com.taobao.tddl.common.utils.logger.LoggerFactory;
 import com.taobao.tddl.executor.spi.IDataSourceGetter;
 import com.taobao.tddl.optimizer.config.table.RepoSchemaManager;
 import com.taobao.tddl.optimizer.config.table.TableMeta;
 import com.taobao.tddl.optimizer.config.table.parse.TableMetaParser;
 import com.taobao.tddl.repo.mysql.spi.DatasourceMySQLImplement;
+
+import com.taobao.tddl.common.utils.logger.Logger;
+import com.taobao.tddl.common.utils.logger.LoggerFactory;
 
 /**
  * @author mengshi.sunmengshi 2013-12-5 下午6:18:14
@@ -150,7 +152,8 @@ public class MysqlTableMetaManager extends RepoSchemaManager {
                 Element column = doc.createElement("column");
                 column.setAttribute("name", rsmd.getColumnName(i));
                 columns.appendChild(column);
-                String type = TableMetaParser.jdbcTypeToDataTypeString(rsmd.getColumnType(i));
+                boolean isUnsigned = StringUtils.containsIgnoreCase(rsmd.getColumnTypeName(i), "unsigned");
+                String type = TableMetaParser.jdbcTypeToDataTypeString(rsmd.getColumnType(i), isUnsigned);
                 column.setAttribute("type", type);
             }
 
@@ -193,5 +196,4 @@ public class MysqlTableMetaManager extends RepoSchemaManager {
         }
 
     }
-
 }

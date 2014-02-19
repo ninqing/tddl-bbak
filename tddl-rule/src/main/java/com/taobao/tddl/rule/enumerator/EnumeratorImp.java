@@ -1,6 +1,7 @@
 package com.taobao.tddl.rule.enumerator;
 
 import java.math.BigDecimal;
+import java.math.BigInteger;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -9,6 +10,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.TreeSet;
 
+import com.taobao.tddl.rule.enumerator.handler.BigIntegerPartDiscontinousRangeEnumerator;
 import com.taobao.tddl.rule.enumerator.handler.CloseIntervalFieldsEnumeratorHandler;
 import com.taobao.tddl.rule.enumerator.handler.DatePartDiscontinousRangeEnumerator;
 import com.taobao.tddl.rule.enumerator.handler.DefaultEnumerator;
@@ -39,6 +41,7 @@ public class EnumeratorImp implements Enumerator {
         enumeratorMap.put(Integer.class.getName(), new IntegerPartDiscontinousRangeEnumerator());
         enumeratorMap.put(Long.class.getName(), new LongPartDiscontinousRangeEnumerator());
         enumeratorMap.put(BigDecimal.class.getName(), new LongPartDiscontinousRangeEnumerator());
+        enumeratorMap.put(BigInteger.class.getName(), new BigIntegerPartDiscontinousRangeEnumerator());
         enumeratorMap.put(Date.class.getName(), new DatePartDiscontinousRangeEnumerator());
         enumeratorMap.put(java.sql.Date.class.getName(), new DatePartDiscontinousRangeEnumerator());
         enumeratorMap.put(java.sql.Timestamp.class.getName(), new DatePartDiscontinousRangeEnumerator());

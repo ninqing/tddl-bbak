@@ -8,6 +8,8 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.commons.lang.StringUtils;
+
 import com.taobao.tddl.common.exception.TddlException;
 import com.taobao.tddl.common.utils.GeneralUtil;
 import com.taobao.tddl.executor.common.DuplicateKVPair;
@@ -98,7 +100,8 @@ public class My_Cursor implements Cursor {
             } else {
                 ResultSetMetaData rsmd = this.myJdbcHandler.getResultSet().getMetaData();
                 for (int i = 1; i <= rsmd.getColumnCount(); i++) {
-                    DataType type = TableMetaParser.jdbcTypeToDataType(rsmd.getColumnType(i));
+                    boolean isUnsigned = StringUtils.containsIgnoreCase(rsmd.getColumnTypeName(i), "unsigned");
+                    DataType type = TableMetaParser.jdbcTypeToDataType(rsmd.getColumnType(i), isUnsigned);
                     String name = rsmd.getColumnLabel(i);
                     ColumnMeta cm = new ColumnMeta(null, name, type, null, true);
                     returnColumns.add(cm);
