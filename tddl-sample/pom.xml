@@ -10,13 +10,12 @@
 	<packaging>jar</packaging>
 	<name>${project.artifactId} module for tddl ${project.version}</name>
 	<dependencies>
-	
 		<dependency>
 			<groupId>${project.groupId}</groupId>
 			<artifactId>tddl-client</artifactId>
 			<version>${project.version}</version>
 		</dependency>
-	<dependency>
+		<dependency>
 			<groupId>${project.groupId}</groupId>
 			<artifactId>tddl-matrix</artifactId>
 			<version>${project.version}</version>
@@ -26,7 +25,6 @@
 			<artifactId>tddl-config-diamond</artifactId>
 			<version>${project.version}</version>
 		</dependency>
-
 		<dependency>
 			<groupId>${project.groupId}</groupId>
 			<artifactId>tddl-repo-mysql</artifactId>

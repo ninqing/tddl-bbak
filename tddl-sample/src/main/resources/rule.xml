@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
 <beans>
-	<bean id="vtabroot" class="com.ali.luna.mortred.tddl.AutoDetectedVirtualTableRoot"
-		init-method="init">
+	<bean id="vtabroot" class="com.taobao.tddl.rule.VirtualTableRoot" init-method="init">
 		<property name="dbType" value="MYSQL" />
 		<property name="defaultDbIndex" value="SUBWAY_DEV_G_GROUP" />
 	</bean>
