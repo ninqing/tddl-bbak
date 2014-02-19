@@ -1,4 +1,8 @@
 package com.taobao.tddl.sample;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.Executors;
@@ -9,10 +13,11 @@ import com.taobao.tddl.executor.common.ExecutionContext;
 import com.taobao.tddl.executor.cursor.ResultCursor;
 import com.taobao.tddl.executor.rowset.IRowSet;
 import com.taobao.tddl.matrix.config.MatrixConfigHolder;
+import com.taobao.tddl.matrix.jdbc.TDataSource;
 
-public class ConfigHolderTest {
+public class Sample {
 
-    public static void main(String[] args) throws TddlException {
+    public static void main22(String[] args) throws TddlException {
 
         MatrixConfigHolder configHolder = new MatrixConfigHolder();
         Map cp = new HashMap();
@@ -57,21 +62,43 @@ public class ConfigHolderTest {
 
             System.out.println("ok");
         }
-        // long start = System.currentTimeMillis();
-        // {
-        // ResultCursor rc =
-        // me.execute("SELECT b.thedate, b. memberid, b.campaignid, b.productlineid, b.adgroupid, sum(b.impression), sum(b.cost), sum(b.click),(sum(b.click)/sum(b.impression)) as ctr,(sum(b.cost) / sum(b.click)) as ppc,a.outsidekey, a.onlinestate, a.reason FROM Lunaadgroup a left join rpt_solar_adgroup_ob b on a.id=b.adgroupid WHERE a.outsidekey like '%taobao%' AND a.onlinestate in (1,2,3) AND b.impression>10 AND b.thedate between '2013-12-12' AND '2013-12-31' GROUP BY b.thedate, b.memberid, b.campaignid, b.productlineid, b.adgroupid HAVING ppc>1 ORDER BY  ppc DESC LIMIT   1,100",
-        // context);
-        //
-        // IRowSet row = null;
-        // while ((row = rc.next()) != null) {
-        // System.out.println(row);
-        // }
-        //
-        // System.out.println("ok");
-        //
-        // System.out.println(System.currentTimeMillis() - start);
-        // }
+
+    }
+
+    public static void main(String[] args) throws TddlException, SQLException {
+
+        TDataSource ds = new TDataSource();
+
+        ds.setAppName("DEV_SUBWAY_MYSQL");
+        ds.setRuleFile("rule.xml");
+
+        Map cp = new HashMap();
+        cp.put("ALLOW_TEMPORARY_TABLE", "True");
+
+        ds.setConnectionProperties(cp);
+
+        ds.init();
+        Connection conn = ds.getConnection();
+        PreparedStatement ps = conn.prepareStatement("SELECT  SUM(c.cost) / SUM(c.click) AS ppc,c.thedate, c.memberid, c.campaignid, c.productlineid, c.adgroupid, SUM(c.impression), SUM(c.cost), SUM(c.click), SUM(c.click) / SUM(c.impression) AS ctr, b.title, a.onlinestate, a.reason FROM Lunaadgroup a join lunaadgroupinfo b on a.id=b.adgroupid  LEFT JOIN rpt_solar_adgroup_ob c ON a.id = c.adgroupid where b.title like '%办公室%'  GROUP BY c.thedate, c.memberid, c.campaignid, c.productlineid, c.adgroupid HAVING ppc > 1 ORDER BY ppc DESC");
+
+        ResultSet rs = ps.executeQuery();
+        while (rs.next()) {
+            StringBuilder sb = new StringBuilder();
+            int count = rs.getMetaData().getColumnCount();
+            for (int i = 1; i <= count; i++) {
+
+                String key = rs.getMetaData().getColumnLabel(i);
+                Object val = rs.getObject(i);
+                sb.append("[" + rs.getMetaData().getTableName(i) + "." + key + "->" + val + "]");
+            }
+            System.out.println(sb.toString());
+        }
+
+        rs.close();
+        ps.close();
+        conn.close();
+
+        System.out.println("done");
     }
 
 }
