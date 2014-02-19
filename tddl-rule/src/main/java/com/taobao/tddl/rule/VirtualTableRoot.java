@@ -4,6 +4,10 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Map.Entry;
 
+import org.springframework.beans.BeansException;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.ApplicationContextAware;
+
 import com.taobao.tddl.common.exception.TddlException;
 import com.taobao.tddl.common.model.DBType;
 import com.taobao.tddl.common.model.lifecycle.AbstractLifecycle;
@@ -20,7 +24,7 @@ import com.taobao.tddl.common.utils.logger.LoggerFactory;
  * @author junyu
  * @author <a href="jianghang.loujh@taobao.com">jianghang</a>
  */
-public class VirtualTableRoot extends AbstractLifecycle implements Lifecycle {
+public class VirtualTableRoot extends AbstractLifecycle implements Lifecycle, ApplicationContextAware {
 
     private static final Logger                 logger           = LoggerFactory.getLogger(VirtualTableRoot.class);
     protected String                            dbType           = "MYSQL";
@@ -31,8 +35,20 @@ public class VirtualTableRoot extends AbstractLifecycle implements Lifecycle {
     protected boolean                           needIdInGroup    = false;
     protected boolean                           completeDistinct = false;
     protected boolean                           lazyInit         = false;
+    protected ApplicationContext                context;
 
     public void init() throws TddlException {
+        if (virtualTableMap == null || virtualTableMap.isEmpty()) {
+            // 如果为空，采用自动查找的方式，将bean name做为逻辑表名
+            Map<String, TableRule> vts = new HashMap<String, TableRule>();
+            String[] tbeanNames = context.getBeanNamesForType(TableRule.class);
+            for (String name : tbeanNames) {
+                Object obj = context.getBean(name);
+                vts.put(name, (TableRule) obj);
+            }
+            setTableRules(vts);
+        }
+
         for (Map.Entry<String, TableRule> entry : virtualTableMap.entrySet()) {
             if (!lazyInit) {
                 initTableRule(entry.getKey(), entry.getValue());
@@ -133,6 +149,11 @@ public class VirtualTableRoot extends AbstractLifecycle implements Lifecycle {
 
     public void setLazyInit(boolean lazyInit) {
         this.lazyInit = lazyInit;
+    }
+
+    @Override
+    public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {
+        this.context = applicationContext;
     }
 
 }
