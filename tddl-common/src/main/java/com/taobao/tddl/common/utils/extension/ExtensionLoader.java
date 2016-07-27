@@ -175,7 +175,16 @@ public class ExtensionLoader<S> {
         }
 
     }
-
+    
+	/**
+	 * 通过反射获取service类的扩展类来实现功能
+	 * 此举主要作用在于部署多套环境的时候通过加载不同的策略来实现不同功能
+	 * @param service
+	 * @param dir
+	 * @param classLoader
+	 * @param extensions
+	 * @throws IOException
+	 */
     private static void loadFile(Class<?> service, String dir, ClassLoader classLoader, List<Class> extensions)
                                                                                                                throws IOException {
         String fileName = dir + service.getName();

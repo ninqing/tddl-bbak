@@ -6,7 +6,8 @@ import java.util.concurrent.Executor;
 import com.taobao.tddl.common.model.lifecycle.Lifecycle;
 
 /**
- * 获取配置的处理器
+ * 获取配置的处理器，默认10秒超时
+ * 使用两种策略，1缓存优先，2server优先
  * 
  * @author <a href="zylicfc@gmail.com">junyu</a>
  * @version 1.0

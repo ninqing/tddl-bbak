@@ -762,4 +762,17 @@ public class TGroupDatabaseMetaData implements DatabaseMetaData {
         return getDatabaseMetaData().usesLocalFiles();
     }
 
+	@Override
+	public ResultSet getPseudoColumns(String catalog, String schemaPattern, String tableNamePattern,
+			String columnNamePattern) throws SQLException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public boolean generatedKeyAlwaysReturned() throws SQLException {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
 }

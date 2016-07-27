@@ -5,6 +5,8 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.concurrent.Executor;
 
+import org.apache.commons.lang.StringUtils;
+
 import com.taobao.diamond.client.impl.DiamondEnv;
 import com.taobao.diamond.client.impl.DiamondEnvRepo;
 import com.taobao.diamond.client.impl.DiamondUnitSite;
@@ -17,7 +19,6 @@ import com.taobao.tddl.common.utils.mbean.TddlMBean;
 import com.taobao.tddl.common.utils.mbean.TddlMBeanServer;
 import com.taobao.tddl.config.ConfigDataListener;
 import com.taobao.tddl.config.impl.UnitConfigDataHandler;
-
 import com.taobao.tddl.common.utils.logger.Logger;
 import com.taobao.tddl.common.utils.logger.LoggerFactory;
 
@@ -44,11 +45,12 @@ public class DiamondConfigDataHandler extends UnitConfigDataHandler {
         mbeanId = dataId + System.currentTimeMillis();
 
         // TODO 外部直接指定ip进行访问
-        if (unitName != null && !"".equals(unitName.trim())) {
-            env = DiamondUnitSite.getDiamondUnitEnv(unitName);
-        } else {
+        if(StringUtils.isEmpty(unitName)){
             env = DiamondEnvRepo.defaultEnv;
+        }else{
+            env = DiamondUnitSite.getDiamondUnitEnv(unitName);
         }
+
 
         if (initialData == null) {
             initialData = getData(TIMEOUT, FIRST_SERVER_STRATEGY);

@@ -28,7 +28,6 @@
 		<dependency>
 			<groupId>com.taobao.diamond</groupId>
 			<artifactId>diamond-client</artifactId>
-			<version>3.6.7</version>
 		</dependency>
 
 		<!-- <dependency> <groupId>com.taobao.eagleeye</groupId> <artifactId>eagleeye-core</artifactId> 

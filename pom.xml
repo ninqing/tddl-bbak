@@ -36,7 +36,7 @@
 		<developerConnection>scm:git:git@github.com:tddl/tddl.git</developerConnection>
 	</scm>
 
-	<repositories>
+<!-- 	<repositories>
 		<repository>
 			<id>java.net</id>
 			<url>http://download.java.net/maven/2/</url>
@@ -47,12 +47,12 @@
 				<enabled>false</enabled>
 			</snapshots>
 		</repository>
-	</repositories>
+	</repositories> -->
  
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<!--maven properties -->
-		<maven.test.skip>false</maven.test.skip>
+		<maven.test.skip>true</maven.test.skip>
 		<downloadSources>true</downloadSources>
 		<!-- compiler settings properties -->
 		<java_source_version>1.6</java_source_version>
@@ -63,7 +63,7 @@
 		<jcl_version>1.1</jcl_version>
 		<log4j_version>1.2.16</log4j_version>
 		<logback_version>1.0.6</logback_version>
-		<groovy_version>2.1.9</groovy_version>
+		<groovy_version>2.2.2</groovy_version>
 		<spring_version>2.5.6.SEC03</spring_version>
 		<!-- Test libs -->
 		<junit_version>4.11</junit_version>
@@ -77,15 +77,15 @@
 		<module>tddl-atom</module>
 		<module>tddl-group</module>
 		<module>tddl-repo-mysql</module>
-		<module>tddl-repo-oceanbase</module>
+		
 		<module>tddl-optimizer</module>
 		<module>tddl-executor</module>
 		<module>tddl-matrix</module>
 		<module>tddl-rule</module>
 		<module>tddl-monitor</module>
 		<module>tddl-sequence</module>
-		<module>tddl-qatest</module>
-		<module>tddl-repo-bdb</module>
+			<!--<module>tddl-qatest</module> <module>tddl-repo-oceanbase</module> <module>tddl-repo-bdb</module> -->
+		
 	</modules>
 
 	<dependencyManagement>
@@ -104,7 +104,7 @@
 			<dependency>
 				<groupId>com.google.guava</groupId>
 				<artifactId>guava</artifactId>
-				<version>15.0</version>
+				<version>17.0</version>
 			</dependency>
 			<dependency>
 				<groupId>com.googlecode.concurrentlinkedhashmap</groupId>
@@ -114,17 +114,17 @@
 			<dependency>
 				<groupId>com.alibaba</groupId>
 				<artifactId>fastjson</artifactId>
-				<version>1.1.36</version>
+				<version>1.1.40</version>
 			</dependency>
 			<dependency>
 				<groupId>com.taobao.diamond</groupId>
 				<artifactId>diamond-client</artifactId>
-				<version>3.6.8</version>
+				<version>3.7.0-SNAPSHOT</version>
 			</dependency>
 			<dependency>
 				<groupId>com.alibaba</groupId>
 				<artifactId>druid</artifactId>
-				<version>1.0.2</version>
+				<version>1.0.5</version>
 			</dependency>
 			<dependency>
 				<groupId>org.codehaus.groovy</groupId>
@@ -158,19 +158,19 @@
 			<dependency>
 				<groupId>mysql</groupId>
 				<artifactId>mysql-connector-java</artifactId>
-				<version>5.1.27</version>
+				<version>5.1.30</version>
 			</dependency>
 			<dependency>
 				<groupId>com.sleepycat</groupId>
 				<artifactId>je</artifactId>
 				<version>5.0.73</version>
 			</dependency>
-			<dependency>
+			<!-- <dependency>
 				<groupId>com.alipay.oceanbase</groupId>
 				<artifactId>oceanbase</artifactId>
 				<version>1.2.2</version>
 			</dependency>
-			<!-- Log libs -->
+			Log libs -->
 			<dependency>
 				<groupId>org.slf4j</groupId>
 				<artifactId>slf4j-api</artifactId>
@@ -296,21 +296,7 @@
 			<url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
 		</repository>
 	</distributionManagement>
-	 -->
+	  
 	 
-	 <distributionManagement>
-		<!-- use the following if you're not using a snapshot version. -->
-		<repository>
-			<id>releases</id>
-			<name>taobao mirror</name>
-			<url>http://mvnrepo.taobao.ali.com/mvn/releases</url>
-			<!-- <url>http://mvnrepo.taobao.ali.com/mvn/repository</url> -->
-		</repository>
-		<!-- use the following if you ARE using a snapshot version. -->
-		<snapshotRepository>
-			<id>snapshots</id>
-			<name>taobao mirror snapshots</name>
-			<url>http://mvnrepo.taobao.ali.com/mvn/snapshots</url>
-		</snapshotRepository>
-	</distributionManagement>
+ -->
 </project>

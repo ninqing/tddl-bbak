@@ -114,7 +114,7 @@ public class ChangeMasterSlaveTest extends GroupTestCase {
         // 修改为只读(确保推送成功)
         for (int i = 0; i < 3; i++) {
             MockServer.setConfigInfo(TAtomConstants.getGlobalDataId(DBKEY_0),
-                "ip=10.232.31.154\r\nport=3306\r\ndbName=qatest_normal_0\r\ndbType=mysql\r\ndbStatus=R");
+                "ip=127.0.0.1\r\nport=3306\r\ndbName=qatest_normal_0\r\ndbType=mysql\r\ndbStatus=R");
             TimeUnit.SECONDS.sleep(SLEEP_TIME);
         }
 
@@ -128,7 +128,7 @@ public class ChangeMasterSlaveTest extends GroupTestCase {
 
         // 恢复
         MockServer.setConfigInfo(TAtomConstants.getGlobalDataId(DBKEY_0),
-            "ip=10.232.31.154\r\nport=3306\r\ndbName=qatest_normal_0\r\ndbType=mysql\r\ndbStatus=WR");
+            "ip=127.0.0.1\r\nport=3306\r\ndbName=qatest_normal_0\r\ndbType=mysql\r\ndbStatus=WR");
         TimeUnit.SECONDS.sleep(SLEEP_TIME);
     }
 }

@@ -1,6 +1,7 @@
 package com.taobao.tddl.atom.common;
 
 import java.io.IOException;
+import java.util.List;
 import java.util.Properties;
 
 import org.junit.Assert;
@@ -16,6 +17,25 @@ import com.taobao.tddl.atom.config.TAtomDsConfDO;
 import com.taobao.tddl.atom.exception.AtomAlreadyInitException;
 
 public class TAtomDataSourceTest extends BaseAtomTest {
+	static class a{
+	    String appName = "tddl_sample";
+	    String dbKey = "tddl_sample_0";
+	    void p() throws Throwable{
+	    	TAtomDataSource tAtomDataSource = createTAtomDataSource(appName, dbKey, "mysql");
+		    JdbcTemplate jtp = new JdbcTemplate(tAtomDataSource);
+		    List<Integer> queryForList = jtp.queryForList("select * from aa");
+		    for (Integer integer : queryForList) {
+				System.out.println(integer);
+			}
+	    }
+		
+	}
+	public static void main(String[] args) throws Throwable {
+		TAtomDataSource tAtomDataSource = new TAtomDataSource();
+		tAtomDataSource.setAppName("andor_mysql");
+		tAtomDataSource.setDbKey("andor_mysql_group_0_atom0");
+		tAtomDataSource.init();
+   }
 
     static String TEST_SQL = "select 1 from dual";
 

@@ -351,7 +351,7 @@ public class GroupSequenceTest extends BaseAtomGroupTestCase {
         Connection conn = null;
         try {
             Class.forName("com.mysql.jdbc.Driver");
-            String url = "jdbc:mysql://10.232.31.154:3306/" + db;
+            String url = "jdbc:mysql://127.0.0.1:3306/" + db;
             String user = "tddl";
             String passWord = "tddl";
             conn = (Connection) DriverManager.getConnection(url, user, passWord);

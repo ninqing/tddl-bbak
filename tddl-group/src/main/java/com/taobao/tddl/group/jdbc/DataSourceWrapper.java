@@ -3,6 +3,8 @@ package com.taobao.tddl.group.jdbc;
 import java.io.PrintWriter;
 import java.sql.Connection;
 import java.sql.SQLException;
+import java.sql.SQLFeatureNotSupportedException;
+import java.util.logging.Logger;
 
 import javax.sql.DataSource;
 
@@ -149,6 +151,12 @@ public class DataSourceWrapper implements DataSource {
             throw new SQLException(e);
         }
     }
+
+	@Override
+	public Logger getParentLogger() throws SQLFeatureNotSupportedException {
+		// TODO Auto-generated method stub
+		return null;
+	}
 
     /*
      * //Since: 1.6 //java.sql.Wrapper public boolean isWrapperFor(Class<?>

@@ -1,6 +1,7 @@
 package com.taobao.tddl.atom;
 
 import java.sql.SQLException;
+import java.sql.SQLFeatureNotSupportedException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -150,5 +151,11 @@ public class TAtomDataSource extends AbstractTAtomDataSource {
     protected DataSource getDataSource() throws SQLException {
         return this.dsConfHandle.getDataSource();
     }
+
+	@Override
+	public java.util.logging.Logger getParentLogger() throws SQLFeatureNotSupportedException {
+		// TODO Auto-generated method stub
+		return null;
+	}
 
 }

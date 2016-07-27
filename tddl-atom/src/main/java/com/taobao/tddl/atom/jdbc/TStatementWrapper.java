@@ -479,4 +479,16 @@ public class TStatementWrapper implements TStatement {
     public SqlMetaData getSqlMetaData() {
         return this.sqlMetaData;
     }
+
+	@Override
+	public void closeOnCompletion() throws SQLException {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public boolean isCloseOnCompletion() throws SQLException {
+		// TODO Auto-generated method stub
+		return false;
+	}
 }
