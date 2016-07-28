@@ -7,13 +7,8 @@
 	<name>root module for tddl ${project.version}</name>
 	<version>5.0.0-SNAPSHOT</version>
 	<url>https://github.com/tddl/tddl</url>
-	<!-- 
-	<parent>
-		<groupId>org.sonatype.oss</groupId>
-		<artifactId>oss-parent</artifactId>
-		<version>7</version>
-	</parent>
-	 -->
+	<!-- <parent> <groupId>org.sonatype.oss</groupId> <artifactId>oss-parent</artifactId> 
+		<version>7</version> </parent> -->
 	<developers>
 		<developer>
 			<name>agapple</name>
@@ -36,19 +31,10 @@
 		<developerConnection>scm:git:git@github.com:tddl/tddl.git</developerConnection>
 	</scm>
 
-<!-- 	<repositories>
-		<repository>
-			<id>java.net</id>
-			<url>http://download.java.net/maven/2/</url>
-			<releases>
-				<enabled>true</enabled>
-			</releases>
-			<snapshots>
-				<enabled>false</enabled>
-			</snapshots>
-		</repository>
-	</repositories> -->
- 
+	<!-- <repositories> <repository> <id>java.net</id> <url>http://download.java.net/maven/2/</url> 
+		<releases> <enabled>true</enabled> </releases> <snapshots> <enabled>false</enabled> 
+		</snapshots> </repository> </repositories> -->
+
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<!--maven properties -->
@@ -62,11 +48,11 @@
 		<slf4j_version>1.6.2</slf4j_version>
 		<jcl_version>1.1</jcl_version>
 		<log4j_version>1.2.16</log4j_version>
-		<logback_version>1.0.6</logback_version>
-		<groovy_version>2.2.2</groovy_version>
+		<logback_version>1.1.7</logback_version>
+		<groovy_version>2.4.7</groovy_version>
 		<spring_version>2.5.6.SEC03</spring_version>
 		<!-- Test libs -->
-		<junit_version>4.11</junit_version>
+		<junit_version>4.12</junit_version>
 	</properties>
 
 	<modules>
@@ -77,15 +63,15 @@
 		<module>tddl-atom</module>
 		<module>tddl-group</module>
 		<module>tddl-repo-mysql</module>
-		
+
 		<module>tddl-optimizer</module>
 		<module>tddl-executor</module>
 		<module>tddl-matrix</module>
 		<module>tddl-rule</module>
 		<module>tddl-monitor</module>
 		<module>tddl-sequence</module>
-			<!--<module>tddl-qatest</module> <module>tddl-repo-oceanbase</module> <module>tddl-repo-bdb</module> -->
-		
+		<module>tddl-qatest</module>
+
 	</modules>
 
 	<dependencyManagement>
@@ -104,7 +90,7 @@
 			<dependency>
 				<groupId>com.google.guava</groupId>
 				<artifactId>guava</artifactId>
-				<version>17.0</version>
+				<version>19.0</version>
 			</dependency>
 			<dependency>
 				<groupId>com.googlecode.concurrentlinkedhashmap</groupId>
@@ -114,7 +100,7 @@
 			<dependency>
 				<groupId>com.alibaba</groupId>
 				<artifactId>fastjson</artifactId>
-				<version>1.1.40</version>
+				<version>1.2.13</version>
 			</dependency>
 			<dependency>
 				<groupId>com.taobao.diamond</groupId>
@@ -124,7 +110,7 @@
 			<dependency>
 				<groupId>com.alibaba</groupId>
 				<artifactId>druid</artifactId>
-				<version>1.0.5</version>
+				<version>1.0.18</version>
 			</dependency>
 			<dependency>
 				<groupId>org.codehaus.groovy</groupId>
@@ -165,12 +151,8 @@
 				<artifactId>je</artifactId>
 				<version>5.0.73</version>
 			</dependency>
-			<!-- <dependency>
-				<groupId>com.alipay.oceanbase</groupId>
-				<artifactId>oceanbase</artifactId>
-				<version>1.2.2</version>
-			</dependency>
-			Log libs -->
+			<!-- <dependency> <groupId>com.alipay.oceanbase</groupId> <artifactId>oceanbase</artifactId> 
+				<version>1.2.2</version> </dependency> Log libs -->
 			<dependency>
 				<groupId>org.slf4j</groupId>
 				<artifactId>slf4j-api</artifactId>
@@ -265,9 +247,6 @@
 				<includes>
 					<include>**/*</include>
 				</includes>
-				<excludes>
-					<exclude>**/.svn/</exclude>
-				</excludes>
 			</resource>
 		</resources>
 		<testResources>
@@ -276,27 +255,9 @@
 				<includes>
 					<include>**/*</include>
 				</includes>
-				<excludes>
-					<exclude>**/.svn/</exclude>
-				</excludes>
 			</testResource>
 		</testResources>
 	</build>
 
-	<!-- 
-	<distributionManagement>
-		<snapshotRepository>
-			<id>sonatype-nexus-snapshots</id>
-			<name>Sonatype Nexus Snapshots</name>
-			<url>https://oss.sonatype.org/content/repositories/snapshots/</url>
-		</snapshotRepository>
-		<repository>
-			<id>sonatype-nexus-staging</id>
-			<name>Nexus Release Repository</name>
-			<url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
-		</repository>
-	</distributionManagement>
-	  
-	 
- -->
+
 </project>
