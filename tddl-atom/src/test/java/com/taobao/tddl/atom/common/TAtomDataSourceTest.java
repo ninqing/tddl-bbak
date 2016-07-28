@@ -354,7 +354,7 @@ public class TAtomDataSourceTest extends BaseAtomTest {
         tAtomDataSource.destroyDataSource();
     }
 
-    private TAtomDataSource createTAtomDataSource(String appName, String dbKey, String configName)
+    private static TAtomDataSource createTAtomDataSource(String appName, String dbKey, String configName)
                                                                                                   throws IOException,
                                                                                                   AtomAlreadyInitException,
                                                                                                   Exception {

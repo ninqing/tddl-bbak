@@ -71,6 +71,7 @@
 		<module>tddl-monitor</module>
 		<module>tddl-sequence</module>
 		<module>tddl-qatest</module>
+		<module>tddl-sample</module>
 
 	</modules>
 
