@@ -16,7 +16,7 @@ public class Sample {
 
         TDataSource ds = new TDataSource();
 
-        ds.setAppName("DEV_SUBWAY_MYSQL");
+        ds.setAppName("test_app");
         ds.setRuleFile("rule.xml");
 
         Map cp = new HashMap();
