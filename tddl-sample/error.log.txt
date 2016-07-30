@@ -1,0 +1,37 @@
+Jul 31, 2016 12:41:23 AM com.taobao.tddl.common.utils.logger.LoggerFactory info
+INFO: using logger: com.taobao.tddl.common.utils.logger.jcl.JclLoggerAdapter
+com.taobao.tddl.v1_test_app_topology
+com.taobao.tddl.v1_test_app_dbgroups
+Jul 31, 2016 12:41:23 AM com.taobao.tddl.rule.utils.StringXmlApplicationContext prepareRefresh
+INFO: Refreshing com.taobao.tddl.rule.utils.StringXmlApplicationContext@d6da883: startup date [Sun Jul 31 00:41:23 CST 2016]; root of context hierarchy
+Jul 31, 2016 12:41:23 AM org.springframework.beans.factory.xml.XmlBeanDefinitionReader loadBeanDefinitions
+INFO: Loading XML bean definitions from Byte array resource [resource loaded from byte array]
+Jul 31, 2016 12:41:24 AM com.taobao.tddl.rule.VirtualTableRoot warn
+WARNING:  [TDDL] virtual table start to init :TEST_TABLE, tddl version: 5.0.0
+Jul 31, 2016 12:41:24 AM com.taobao.tddl.rule.VirtualTableRoot warn
+WARNING:  [TDDL] virtual table inited :TEST_TABLE, tddl version: 5.0.0
+Jul 31, 2016 12:41:24 AM com.taobao.tddl.optimizer.config.table.StaticSchemaManager warn
+WARNING:  [TDDL] schema file is not assigned, tddl version: 5.0.0
+com.taobao.tddl.v1_test_app_schema
+com.taobao.and_orV0.test_app_SCHEMA_DATAID
+Jul 31, 2016 12:41:24 AM com.taobao.tddl.optimizer.config.table.StaticSchemaManager warn
+WARNING:  [TDDL] get schema null, appName is:test_app, unitName is:null, filePath is: null, dataId is: com.taobao.and_orV0.test_app_SCHEMA_DATAID, tddl version: 5.0.0
+Exception in thread "main" com.taobao.tddl.common.exception.TddlException: com.taobao.tddl.common.exception.TddlException: com.taobao.tddl.common.exception.TddlException: java.lang.NullPointerException
+	at com.taobao.tddl.common.model.lifecycle.AbstractLifecycle.init(AbstractLifecycle.java:30)
+	at com.taobao.tddl.sample.Sample.main(Sample.java:18)
+Caused by: com.taobao.tddl.common.exception.TddlException: com.taobao.tddl.common.exception.TddlException: java.lang.NullPointerException
+	at com.taobao.tddl.common.model.lifecycle.AbstractLifecycle.init(AbstractLifecycle.java:30)
+	at com.taobao.tddl.matrix.jdbc.TDataSource.doInit(TDataSource.java:62)
+	at com.taobao.tddl.common.model.lifecycle.AbstractLifecycle.init(AbstractLifecycle.java:21)
+	... 1 more
+Caused by: com.taobao.tddl.common.exception.TddlException: java.lang.NullPointerException
+	at com.taobao.tddl.matrix.config.MatrixConfigHolder.initSonHolder(MatrixConfigHolder.java:188)
+	at com.taobao.tddl.matrix.config.MatrixConfigHolder.doInit(MatrixConfigHolder.java:90)
+	at com.taobao.tddl.common.model.lifecycle.AbstractLifecycle.init(AbstractLifecycle.java:21)
+	... 3 more
+Caused by: java.lang.NullPointerException
+	at com.taobao.tddl.config.impl.holder.AbstractConfigDataHolder.queryAndHold(AbstractConfigDataHolder.java:41)
+	at com.taobao.tddl.config.impl.holder.AbstractConfigDataHolder.queryAndHold(AbstractConfigDataHolder.java:41)
+	at com.taobao.tddl.group.config.GroupConfigHolder.init(GroupConfigHolder.java:49)
+	at com.taobao.tddl.matrix.config.MatrixConfigHolder.initSonHolder(MatrixConfigHolder.java:185)
+	... 5 more
