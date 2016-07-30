@@ -10,8 +10,8 @@ public class GroupSample {
 		tg.setAppName("test_app");
 		tg.setDbGroupKey("test_group_key");
 		tg.init();
-		System.out.println(
-				tg.getConnection().prepareStatement("insert into t1 values(1,'name1')").execute());
+		JdbcTemplate jt = new JdbcTemplate(tg);
+		System.out.println(jt.update("insert into t1 values(12,'name1')"));
 		tg.destroyDataSource();
 	}
 }
