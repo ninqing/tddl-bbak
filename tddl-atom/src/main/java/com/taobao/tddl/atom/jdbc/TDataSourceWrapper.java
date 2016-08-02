@@ -33,7 +33,6 @@ import com.taobao.tddl.monitor.Monitor;
 import com.taobao.tddl.monitor.SnapshotValuesOutputCallBack;
 import com.taobao.tddl.monitor.stat.AbstractStatLogWriter.LogCounter;
 import com.taobao.tddl.monitor.stat.StatLogWriter;
-import com.taobao.tddl.monitor.utils.NagiosUtils;
 
 public class TDataSourceWrapper implements DataSource, SnapshotValuesOutputCallBack {
 
@@ -256,8 +255,6 @@ public class TDataSourceWrapper implements DataSource, SnapshotValuesOutputCallB
         } catch (SQLException e) {
             ExceptionSorter exceptionSorter = exceptionSorters.get(TStringUtil.upperCase(this.runTimeConf.getDbType()));
             if (exceptionSorter.isExceptionFatal(e)) {
-                NagiosUtils.addNagiosLog(NagiosUtils.KEY_DB_NOT_AVAILABLE + "|" + this.runTimeConf.getDbName(),
-                    e.getMessage());
                 // isNotAvailable = true;
                 valve.setNotAvailable();
             }

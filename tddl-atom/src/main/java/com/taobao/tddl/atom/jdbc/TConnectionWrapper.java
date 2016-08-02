@@ -15,6 +15,7 @@ import java.sql.SQLXML;
 import java.sql.Savepoint;
 import java.sql.Statement;
 import java.sql.Struct;
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.Map;
 import java.util.Properties;
@@ -31,10 +32,9 @@ public class TConnectionWrapper implements Connection {
 
     private static Logger            log        = LoggerFactory.getLogger(TConnectionWrapper.class);
     private final Connection         targetConnection;
-    private ConnRestrictSlot         connRestrictSlot;
     private final TDataSourceWrapper dataSourceWrapper;
-
-    private Set<TStatementWrapper>   statements = new HashSet<TStatementWrapper>(1);
+    private ConnRestrictSlot         connRestrictSlot;
+    private Set<TStatementWrapper>   statements = Collections.synchronizedSet(new HashSet<TStatementWrapper>(1));
 
     public TConnectionWrapper(Connection targetConnection, ConnRestrictSlot connRestrictSlot,
                               TDataSourceWrapper dataSourceWrapper){

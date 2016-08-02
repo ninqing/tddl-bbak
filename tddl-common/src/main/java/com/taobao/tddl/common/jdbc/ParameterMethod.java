@@ -13,6 +13,7 @@ import java.sql.Ref;
 import java.sql.SQLException;
 import java.sql.Time;
 import java.sql.Timestamp;
+import java.sql.Types;
 import java.util.Calendar;
 import java.util.List;
 import java.util.Map;
@@ -109,10 +110,10 @@ public enum ParameterMethod {
                 stmt.setLong((Integer) args[0], (Long) args[1]);
                 break;
             case setNull1:
-                stmt.setNull((Integer) args[0], (Integer) args[1]);
+                stmt.setNull((Integer) args[0], Types.NULL);
                 break;
             case setNull2:
-                stmt.setNull((Integer) args[0], (Integer) args[1], (String) args[2]);
+                stmt.setNull((Integer) args[0], Types.NULL, (String) args[2]);
                 break;
             case setObject1:
                 stmt.setObject((Integer) args[0], args[1]);

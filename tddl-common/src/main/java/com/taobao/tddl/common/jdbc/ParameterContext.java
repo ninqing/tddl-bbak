@@ -41,10 +41,19 @@ public class ParameterContext {
         return args;
     }
 
+    public Object getValue() {
+        return args[1];
+    }
+
     public void setArgs(Object[] args) {
         this.args = args;
     }
 
+    public void setValue(Object value) {
+        this.args[1] = value;
+    }
+
+    @Override
     public String toString() {
         StringBuilder buffer = new StringBuilder();
         buffer.append(parameterMethod).append("(");
