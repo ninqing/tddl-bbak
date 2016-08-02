@@ -78,10 +78,10 @@ public class BaseSqlOptimizerTest {
 
     @AfterClass
     public static void tearDown() throws TddlException {
-        schemaManager.destory();
-        statManager.destory();
-        parser.destory();
-        optimizer.destory();
+        schemaManager.destroy();
+        statManager.destroy();
+        parser.destroy();
+        optimizer.destroy();
     }
 
     public SqlMergeNode getMergeNode(String sql) throws Exception {

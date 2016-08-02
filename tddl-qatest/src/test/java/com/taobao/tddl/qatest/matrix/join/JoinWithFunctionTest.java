@@ -49,7 +49,7 @@ public class JoinWithFunctionTest extends BaseMatrixTestCase {
     }
 
     @After
-    public void destory() throws Exception {
+    public void destroy() throws Exception {
         psConRcRsClose(rc, rs);
     }
 

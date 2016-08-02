@@ -31,7 +31,7 @@ public class CobarSqlParseManager extends AbstractLifecycle implements SqlParseM
     }
 
     @Override
-    protected void doDestory() {
+    protected void dodestroy() {
         cache.invalidateAll();
     }
 

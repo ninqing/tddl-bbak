@@ -115,7 +115,7 @@ public class DiamondConfigDataHandler extends UnitConfigDataHandler {
         }
     }
 
-    protected void doDestory() throws TddlException {
+    protected void dodestroy() throws TddlException {
         closeUnderManager();
     }
 

@@ -143,7 +143,7 @@ public class TDataSource extends AbstractLifecycle implements DataSource {
     }
 
     @Override
-    public void doDestory() throws TddlException {
+    public void dodestroy() throws TddlException {
         if (globalExecutorService != null) {
             globalExecutorService.shutdownNow();
         }
@@ -157,11 +157,11 @@ public class TDataSource extends AbstractLifecycle implements DataSource {
         }
 
         if (configHolder != null) {
-            configHolder.destory();
+            configHolder.destroy();
         }
 
         if (executor.isInited()) {
-            executor.destory();
+            executor.destroy();
         }
     }
 

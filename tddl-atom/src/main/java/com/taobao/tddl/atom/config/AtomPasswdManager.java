@@ -73,7 +73,7 @@ public class AtomPasswdManager implements DbPasswdManager {
 
     public void stopDbPasswdManager() throws TddlException {
         if (null != this.passwdHandler) {
-            this.passwdHandler.destory();
+            this.passwdHandler.destroy();
         }
     }
 

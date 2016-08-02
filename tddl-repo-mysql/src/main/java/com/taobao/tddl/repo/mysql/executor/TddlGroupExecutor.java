@@ -44,7 +44,7 @@ public class TddlGroupExecutor extends AbstractLifecycle implements IGroupExecut
         super.doInit();
     }
 
-    protected void doDestory() throws TddlException {
+    protected void dodestroy() throws TddlException {
         if (remotingExecutableObject instanceof TGroupDataSource) {
             try {
                 ((TGroupDataSource) remotingExecutableObject).destroyDataSource();

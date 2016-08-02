@@ -108,10 +108,10 @@ public class AtomConfigManager implements DbConfManager {
     @Override
     public void stopDbConfManager() throws TddlException {
         if (null != this.globalHandler) {
-            this.globalHandler.destory();
+            this.globalHandler.destroy();
         }
         if (null != this.appDBHandler) {
-            this.appDBHandler.destory();
+            this.appDBHandler.destroy();
         }
     }
 

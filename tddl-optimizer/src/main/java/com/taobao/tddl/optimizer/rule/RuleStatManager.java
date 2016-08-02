@@ -50,11 +50,11 @@ public class RuleStatManager extends AbstractLifecycle implements StatManager {
         });
     }
 
-    protected void doDestory() throws TddlException {
-        super.doDestory();
+    protected void dodestroy() throws TddlException {
+        super.dodestroy();
 
         for (RepoStatManager repo : repos.asMap().values()) {
-            repo.destory();
+            repo.destroy();
         }
     }
 

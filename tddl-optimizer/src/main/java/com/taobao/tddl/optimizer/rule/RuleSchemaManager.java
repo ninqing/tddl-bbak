@@ -87,11 +87,11 @@ public class RuleSchemaManager extends AbstractLifecycle implements SchemaManage
     }
 
     @Override
-    protected void doDestory() throws TddlException {
-        super.doDestory();
+    protected void dodestroy() throws TddlException {
+        super.dodestroy();
 
         for (RepoSchemaManager repo : repos.asMap().values()) {
-            repo.destory();
+            repo.destroy();
         }
 
         if (cache != null) {

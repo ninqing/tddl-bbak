@@ -15,6 +15,7 @@ public class Sample {
 
         ds.setAppName("test_app");
         ds.setRuleFile("rule.xml");
+        ds.setDynamicRule(true);
         ds.init();
 
         System.out.println("init done");

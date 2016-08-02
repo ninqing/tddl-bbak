@@ -55,9 +55,9 @@ public class OptimizerRule extends AbstractLifecycle {
     }
 
     @Override
-    protected void doDestory() throws TddlException {
+    protected void dodestroy() throws TddlException {
         if (tddlRule.isInited()) {
-            tddlRule.destory();
+            tddlRule.destroy();
         }
     }
 

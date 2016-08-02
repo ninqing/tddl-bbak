@@ -36,7 +36,7 @@ public class SelectCharacterFunctionTest extends BaseMatrixTestCase {
     }
 
     @After
-    public void destory() throws Exception {
+    public void destroy() throws Exception {
         psConRcRsClose(rc, rs);
     }
 

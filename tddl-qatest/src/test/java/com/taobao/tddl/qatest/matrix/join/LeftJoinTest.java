@@ -47,7 +47,7 @@ public class LeftJoinTest extends BaseMatrixTestCase {
     }
 
     @After
-    public void destory() throws Exception {
+    public void destroy() throws Exception {
         psConRcRsClose(rc, rs);
     }
 

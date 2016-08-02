@@ -742,7 +742,7 @@ public class Validator {
      * @throws SQLException
      */
 
-    public void rcRsDestory(ResultSet rc, ResultSet rs) throws Exception, SQLException {
+    public void rcRsdestroy(ResultSet rc, ResultSet rs) throws Exception, SQLException {
         if (rc != null) {
             rc.close();
             rc = null;

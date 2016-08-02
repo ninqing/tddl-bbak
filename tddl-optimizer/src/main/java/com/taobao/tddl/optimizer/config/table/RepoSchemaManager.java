@@ -110,13 +110,13 @@ public class RepoSchemaManager extends AbstractLifecycle implements SchemaManage
     }
 
     @Override
-    protected void doDestory() throws TddlException {
+    protected void dodestroy() throws TddlException {
         if (local != null && local.isInited()) {
-            local.destory();
+            local.destroy();
         }
 
         if (!isDelegate) {
-            delegate.destory();
+            delegate.destroy();
         }
     }
 

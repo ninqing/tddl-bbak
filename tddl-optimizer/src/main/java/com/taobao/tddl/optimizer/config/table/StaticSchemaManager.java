@@ -87,7 +87,7 @@ public class StaticSchemaManager extends AbstractLifecycle implements SchemaMana
             ConfigDataHandler.FIRST_CACHE_THEN_SERVER_STRATEGY);
 
         if (data == null) {
-            schemaCdh.destory();
+            schemaCdh.destroy();
             // 尝试找一下andor的版本配置
             dataId = ANDOR_SCHEMA_DATA_ID.format(new Object[] { appName });
             schemaCdh = factory.getConfigDataHandler(dataId, new SchemaConfigDataListener(this));
@@ -162,11 +162,11 @@ public class StaticSchemaManager extends AbstractLifecycle implements SchemaMana
 
     }
 
-    protected void doDestory() throws TddlException {
-        super.doDestory();
+    protected void dodestroy() throws TddlException {
+        super.dodestroy();
         ss.clear();
         if (schemaCdh != null) {
-            schemaCdh.destory();
+            schemaCdh.destroy();
         }
     }
 

@@ -31,7 +31,7 @@ public class RemoteRuleIntegration extends BaseRuleTest {
 
     @AfterClass
     public static void tearDown() throws TddlException {
-        rule.destory();
+        rule.destroy();
     }
 
     @Test

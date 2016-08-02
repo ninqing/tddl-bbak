@@ -156,9 +156,9 @@ public class CostBasedOptimizer extends AbstractLifecycle implements Optimizer {
     }
 
     @Override
-    protected void doDestory() throws TddlException {
+    protected void dodestroy() throws TddlException {
         optimizedResults.invalidateAll();
-        sqlParseManager.destory();
+        sqlParseManager.destroy();
     }
 
     private class OptimizeResult {

@@ -94,13 +94,13 @@ public class TopologyHandler extends AbstractLifecycle {
 
     }
 
-    protected void doDestory() throws TddlException {
+    protected void dodestroy() throws TddlException {
         Map<String, IRepository> repos = ExecutorContext.getContext().getRepositoryHolder().getRepository();
         for (IRepository repo : repos.values()) {
-            repo.destory();
+            repo.destroy();
         }
 
-        cdh.destory();
+        cdh.destroy();
     }
 
     /**
@@ -201,7 +201,7 @@ public class TopologyHandler extends AbstractLifecycle {
             throw new TddlRuntimeException(e);
         } finally {
             try {
-                groupHanlder.destory();
+                groupHanlder.destroy();
             } catch (TddlException e) {
                 throw new TddlRuntimeException(e);
             }

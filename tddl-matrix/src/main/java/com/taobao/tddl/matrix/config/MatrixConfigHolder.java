@@ -100,13 +100,13 @@ public class MatrixConfigHolder extends AbstractConfigDataHolder {
     }
 
     @Override
-    protected void doDestory() throws TddlException {
-        schemaManager.destory();
-        optimizerRule.destory();
-        optimizer.destory();
-        statManager.destory();
-        topologyHandler.destory();
-        topologyExecutor.destory();
+    protected void dodestroy() throws TddlException {
+        schemaManager.destroy();
+        optimizerRule.destroy();
+        optimizer.destroy();
+        statManager.destroy();
+        topologyHandler.destroy();
+        topologyExecutor.destroy();
     }
 
     public void topologyInit() throws TddlException {

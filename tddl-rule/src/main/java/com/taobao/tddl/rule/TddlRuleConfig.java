@@ -237,9 +237,9 @@ public class TddlRuleConfig extends AbstractLifecycle implements Lifecycle {
             }
         } catch (Exception e) {
             try {
-                ruleHandler.destory();
+                ruleHandler.destroy();
             } catch (TddlException e1) {
-                logger.error("destory failed!", e);
+                logger.error("destroy failed!", e);
             }
 
             logger.error("get diamond data error!", e);
@@ -253,13 +253,13 @@ public class TddlRuleConfig extends AbstractLifecycle implements Lifecycle {
      * 
      * @throws TddlException
      */
-    public void doDestory() throws TddlException {
+    public void dodestroy() throws TddlException {
         if (versionHandler != null) {
-            versionHandler.destory();
+            versionHandler.destroy();
         }
 
         for (ConfigDataHandler ruleListener : this.ruleHandlers.values()) {
-            ruleListener.destory();
+            ruleListener.destroy();
         }
     }
 
@@ -401,9 +401,9 @@ public class TddlRuleConfig extends AbstractLifecycle implements Lifecycle {
                 for (String version : needRemove) {
                     ConfigDataHandler handler = ruleHandlers.get(version);
                     try {
-                        handler.destory();
+                        handler.destroy();
                     } catch (TddlException e) {
-                        logger.error("destory failed!", e);
+                        logger.error("destroy failed!", e);
                     }
                     ruleHandlers.remove(version);
                     vtrs.remove(version);

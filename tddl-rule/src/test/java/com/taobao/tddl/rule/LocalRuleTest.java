@@ -42,8 +42,8 @@ public class LocalRuleTest {
 
     @AfterClass
     public static void tearDown() throws TddlException {
-        rule.destory();
-        mvrRule.destory();
+        rule.destroy();
+        mvrRule.destroy();
     }
 
     @Test

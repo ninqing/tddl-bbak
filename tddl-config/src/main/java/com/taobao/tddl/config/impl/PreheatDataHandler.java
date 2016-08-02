@@ -66,7 +66,7 @@ public class PreheatDataHandler extends UnitConfigDataHandler {
 
     }
 
-    protected void doDestory() throws TddlException {
-        delagate.destory();
+    protected void dodestroy() throws TddlException {
+        delagate.destroy();
     }
 }

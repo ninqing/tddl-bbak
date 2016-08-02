@@ -21,9 +21,9 @@ public class AbstractLifecycle implements Lifecycle {
                 doInit();
                 isInited = true;
             } catch (Exception e) {
-                // 出现异常调用destory方法，释放
+                // 出现异常调用destroy方法，释放
                 try {
-                    doDestory();
+                    dodestroy();
                 } catch (Exception e1) {
                     // ignore
                 }
@@ -32,13 +32,13 @@ public class AbstractLifecycle implements Lifecycle {
         }
     }
 
-    public void destory() throws TddlException {
+    public void destroy() throws TddlException {
         synchronized (lock) {
             if (!isInited()) {
                 return;
             }
 
-            doDestory();
+            dodestroy();
             isInited = false;
         }
     }
@@ -50,7 +50,7 @@ public class AbstractLifecycle implements Lifecycle {
     protected void doInit() throws TddlException {
     }
 
-    protected void doDestory() throws TddlException {
+    protected void dodestroy() throws TddlException {
     }
 
 }

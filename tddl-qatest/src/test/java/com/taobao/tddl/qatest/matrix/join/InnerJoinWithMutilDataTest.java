@@ -51,7 +51,7 @@ public class InnerJoinWithMutilDataTest extends BaseMatrixTestCase {
     }
 
     @After
-    public void destory() throws Exception {
+    public void destroy() throws Exception {
         psConRcRsClose(rc, rs);
     }
 

@@ -86,11 +86,11 @@ public class My_Repository extends AbstractLifecycle implements IRepository {
     }
 
     @Override
-    protected void doDestory() throws TddlException {
+    protected void dodestroy() throws TddlException {
         tables.cleanUp();
 
         for (IGroupExecutor executor : executors.asMap().values()) {
-            executor.destory();
+            executor.destroy();
         }
     }
 

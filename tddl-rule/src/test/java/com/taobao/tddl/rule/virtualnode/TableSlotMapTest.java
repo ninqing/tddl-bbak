@@ -55,6 +55,6 @@ public class TableSlotMapTest {
         Assert.assertEquals("3", slot.getValue("514"));
         Assert.assertEquals("4", slot.getValue("719"));
         Assert.assertEquals("5", slot.getValue("1025"));
-        slot.destory();
+        slot.destroy();
     }
 }

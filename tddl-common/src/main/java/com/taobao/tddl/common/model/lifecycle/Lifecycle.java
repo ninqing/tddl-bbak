@@ -16,7 +16,7 @@ public interface Lifecycle {
     /**
      * 正常停止
      */
-    void destory() throws TddlException;
+    void destroy() throws TddlException;
 
     /**
      * 是否存储运行运行状态

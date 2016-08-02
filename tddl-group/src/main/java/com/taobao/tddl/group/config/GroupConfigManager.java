@@ -125,7 +125,7 @@ public class GroupConfigManager {
 
         parse(dsWeightCommaStr);
         // 已经使用过的配置移除
-        // destoryConfigHoderFactory();
+        // destroyConfigHoderFactory();
     }
 
     /**
@@ -710,7 +710,7 @@ public class GroupConfigManager {
         // 关闭global datasource handler
         try {
             if (globalHandler != null) {
-                globalHandler.destory();
+                globalHandler.destroy();
             }
         } catch (Exception e) {
             logger.error("we got exception when close datasource .", e);
@@ -718,7 +718,7 @@ public class GroupConfigManager {
         // 关闭extraDataSource handler.
         try {
             if (extraHandler != null) {
-                extraHandler.destory();
+                extraHandler.destroy();
             }
         } catch (Exception e) {
             logger.error("we got exception when close datasource .", e);
